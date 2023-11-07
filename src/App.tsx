@@ -1,23 +1,25 @@
-import React from 'react';
+import { Suspense } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
-import MainPage from './pages/MainPage/MainPage';
-import AuthorizationPage from './pages/MainPage/AuthorizationPage/AuthorizationPage';
+import { AuthorizationPageAsync } from './pages/AuthorizationPage/AuthorizationPage.async';
+import { MainPageAsync } from './pages/MainPage/MainPage.async';
 
 function App() {
   return (
     <div>
       <NavLink to={'/'} >Главная</NavLink>
       <NavLink to={'/authorization'} >Авторизация</NavLink>
-      <Routes>
-        <Route
-          path={'/'}
-          element={<MainPage/>}
-        />
-        <Route
-          path={'/authorization'}
-          element={<AuthorizationPage/>}
-        />
-      </Routes>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route
+            path={'/'}
+            element={<MainPageAsync/>}
+          />
+          <Route
+            path={'/authorization'}
+            element={<AuthorizationPageAsync/>}
+          />
+        </Routes>
+      </Suspense>
     </div>
   );
 }
