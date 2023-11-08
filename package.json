@@ -44,6 +44,9 @@
       "last 1 safari version"
     ]
   },
+  "lint-staged": {
+    "**/*": "prettier --write --ignore-unknown"
+  },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.2.1",
     "babel-eslint": "^10.1.0",
