@@ -3,7 +3,7 @@ module.exports = {
     browser: true,
     es2021: true,
   },
-  extends: ['xo', 'plugin:react/recommended'],
+  extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended', 'plugin:react/recommended'],
   overrides: [
     {
       env: {
@@ -14,21 +14,15 @@ module.exports = {
         sourceType: 'script',
       },
     },
-    {
-      extends: ['xo-typescript'],
-      files: ['*.ts', '*.tsx'],
-    },
   ],
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['@typescript-eslint', 'react'],
   rules: {
     'no-console': 'warn',
-    'react/jsx-indent': [2, 4],
-    'react/jsx-indent-props': [2, 4],
-    indent: [2, 4],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.tsx'] }],
     'import/no-unresolved': 'off',
     'import/prefer-default-export': 'off',
@@ -42,6 +36,11 @@ module.exports = {
     'import/no-extraneous-dependencies': 'off',
     'no-underscore-dangle': 'off',
     'react/jsx-no-useless-fragment': 'warn',
-    'no-unused-expressions': '"error',
+    'no-unused-expressions': 'error',
+  },
+  settings: {
+    react: {
+      version: 'detect',
+    },
   },
 };
