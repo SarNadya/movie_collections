@@ -1,14 +1,16 @@
 import React from 'react';
 import { movieAPI } from '../../services/MovieService';
+import { MovieItem } from '../../components/MovieItem';
 
 const MainPage = () => {
-  const { data } = movieAPI.useFetchAllMoviesQuery(20);
+  const { data, isLoading, error } = movieAPI.useFetchAllMoviesQuery(20);
+
   return (
     <div>
-      <h1>Фильмы</h1>
-      <div>
-        {data?.docs?.map((item) => <div key={item.id}>{item.name || item.alternativeName}</div>)}
-      </div>
+      {isLoading && <h1>Loading...</h1>}
+      {error && <h1 style={{ color: 'red' }}>Error</h1>}
+      {data && <h1>Лучшие фильмы</h1>}
+      <div>{data?.docs?.map((item) => <MovieItem item={item} key={item.id} />)}</div>
     </div>
   );
 };
