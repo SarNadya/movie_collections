@@ -6,7 +6,7 @@ interface MovieItemProps {
 }
 
 export const MovieItem: FC<MovieItemProps> = ({ item }) => {
-  const { name, alternativeName, shortDescription } = { ...item };
+  const { name, alternativeName, shortDescription } = item;
   return (
     <div>
       <div>

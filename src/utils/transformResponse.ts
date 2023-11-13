@@ -1,10 +1,13 @@
 import { Movies } from '../types/Movies';
 
 export const transformMoviesResponse = (response: Movies) => {
-  const transformedReponse = response.docs.map((item) => {
-    return {
-      type: (item.type = 'фильм'),
-    };
-  });
-  return { ...response, transformedReponse };
+  return {
+    ...response,
+    docs: response.docs.map((item) => {
+      return {
+        ...item,
+        type: (item.type = 'фильм'),
+      };
+    }),
+  };
 };
