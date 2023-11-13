@@ -18,7 +18,10 @@ function App() {
           <Suspense fallback={<div>Loading...</div>}>
             <Routes>
               <Route path={'/'} element={<MainPageAsync />} />
-              <Route path={'/authorization'} element={<AuthorizationPageAsync />} />
+              <Route
+                path={'/authorization'}
+                element={<AuthorizationPageAsync />}
+              />
             </Routes>
           </Suspense>
         </Content>

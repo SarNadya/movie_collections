@@ -1,16 +1,19 @@
 import React from 'react';
 import { movieAPI } from '../../services/MovieService';
-import { MovieItem } from '../../components/MovieItem';
+import { MovieList } from '../../components/MovieList';
+import { Typography } from 'antd';
+
+const { Title } = Typography;
 
 const MainPage = () => {
   const { data, isLoading, error } = movieAPI.useFetchAllMoviesQuery(20);
 
   return (
-    <div>
+    <div style={{ margin: '20px 30px', textAlign: 'center' }}>
       {isLoading && <h1>Loading...</h1>}
-      {error && <h1 style={{ color: 'red' }}>Error</h1>}
-      {data && <h1>Лучшие фильмы</h1>}
-      <div>{data?.docs?.map((item) => <MovieItem item={item} key={item.id} />)}</div>
+      {error && <Title style={{ color: 'red' }}>Error</Title>}
+      {data && <Title>Лучшие фильмы</Title>}
+      <MovieList />
     </div>
   );
 };
