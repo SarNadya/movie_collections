@@ -14,7 +14,7 @@ export const MovieItem: FC<MovieItemProps> = ({ item }) => {
     <Card
       hoverable
       size="small"
-      style={{ width: 300 }}
+      style={{ width: 200 }}
       cover={<img alt="poster" src={poster.previewUrl} />}
     >
       <p style={{ color: '#1E90FF' }}>

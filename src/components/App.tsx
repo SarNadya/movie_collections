@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { NavLink, Route, Routes } from 'react-router-dom';
 import { AuthorizationPageAsync } from '../pages/AuthorizationPage/AuthorizationPage.async';
 import { MainPageAsync } from '../pages/MainPage/MainPage.async';
-import { Layout } from 'antd';
+import { Layout, Spin } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import '../styles/index.sass';
 
@@ -15,7 +15,7 @@ function App() {
           <NavLink to={'/authorization'}>Авторизация</NavLink>
         </Header>
         <Content>
-          <Suspense fallback={<div>Loading...</div>}>
+          <Suspense fallback={<Spin />}>
             <Routes>
               <Route path={'/'} element={<MainPageAsync />} />
               <Route
