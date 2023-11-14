@@ -2,15 +2,22 @@ import React from 'react';
 import { movieAPI } from '../../services/MovieService';
 import { MovieList } from '../../components/MovieList';
 import { Spin, Typography } from 'antd';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
 
 const { Title } = Typography;
 
 const MainPage = () => {
-  const { data, isLoading, error } = movieAPI.useFetchAllMoviesQuery(60);
+  const { moviesLimit } = useTypedSelector((state) => state.loadReducer);
+  const { data, isLoading, error } =
+    movieAPI.useFetchAllMoviesQuery(moviesLimit);
 
   return (
     <div
-      style={{ margin: '40px 20px', textAlign: 'center', minHeight: '100vh' }}
+      style={{
+        margin: '40px 20px',
+        textAlign: 'center',
+        minHeight: '100vh',
+      }}
     >
       {isLoading && <Spin size="large" />}
       {error && (
