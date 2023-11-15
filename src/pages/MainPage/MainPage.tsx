@@ -1,16 +1,32 @@
 import React from 'react';
 import { movieAPI } from '../../services/MovieService';
-import { MovieItem } from '../../components/MovieItem';
+import { MovieList } from '../../components/MovieList';
+import { Spin, Typography } from 'antd';
+import { useTypedSelector } from '../../hooks/useTypedSelector';
+
+const { Title } = Typography;
 
 const MainPage = () => {
-  const { data, isLoading, error } = movieAPI.useFetchAllMoviesQuery(20);
+  const { moviesLimit } = useTypedSelector((state) => state.loadReducer);
+  const { data, isLoading, error } =
+    movieAPI.useFetchAllMoviesQuery(moviesLimit);
 
   return (
-    <div>
-      {isLoading && <h1>Loading...</h1>}
-      {error && <h1 style={{ color: 'red' }}>Error</h1>}
-      {data && <h1>Лучшие фильмы</h1>}
-      <div>{data?.docs?.map((item) => <MovieItem item={item} key={item.id} />)}</div>
+    <div
+      style={{
+        margin: '40px 20px',
+        textAlign: 'center',
+        minHeight: '100vh',
+      }}
+    >
+      {isLoading && <Spin size="large" />}
+      {error && (
+        <Title level={3} style={{ color: 'red' }}>
+          Ошибка загрузки
+        </Title>
+      )}
+      {data && <Title level={2}>Лучшие фильмы</Title>}
+      <MovieList />
     </div>
   );
 };
