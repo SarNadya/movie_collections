@@ -5,6 +5,7 @@ import { MainPageAsync } from '../pages/MainPage/MainPage.async';
 import { Layout, Spin } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import '../styles/index.sass';
+import { MovieDetails } from './MovieDetails';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
                 path={'/authorization'}
                 element={<AuthorizationPageAsync />}
               />
+              <Route path={'/movie/:id'} element={<MovieDetails />} />
             </Routes>
           </Suspense>
         </Content>

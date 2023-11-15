@@ -1,5 +1,5 @@
 import React from 'react';
-import { movieAPI } from '../../services/MovieService';
+import { useFetchAllMoviesQuery } from '../../services/MovieService';
 import { MovieList } from '../../components/MovieList';
 import { Spin, Typography } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
@@ -8,8 +8,7 @@ const { Title } = Typography;
 
 const MainPage = () => {
   const { moviesLimit } = useTypedSelector((state) => state.loadReducer);
-  const { data, isLoading, error } =
-    movieAPI.useFetchAllMoviesQuery(moviesLimit);
+  const { data, isLoading, error } = useFetchAllMoviesQuery(moviesLimit);
 
   return (
     <div
