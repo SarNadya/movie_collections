@@ -18,11 +18,12 @@ export const MovieList = () => {
           <Space size={16} wrap style={{ justifyContent: 'center' }}>
             {data?.docs?.map((item) => <MovieItem item={item} key={item.id} />)}
           </Space>
-          <ButtonLoadMore
-            isFetching={isFetching}
-            endingList={endingList}
-            onClick={() => loadMoreMovies()}
-          />
+          {!endingList && (
+            <ButtonLoadMore
+              isFetching={isFetching}
+              onClick={() => loadMoreMovies()}
+            />
+          )}
         </div>
       )}
     </div>
