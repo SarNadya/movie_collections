@@ -1,11 +1,11 @@
 import { FC } from 'react';
-import { Movie } from '../types/Movie';
+import { TransformedMovie } from '../types/Movie';
 import { Button, Card, Divider, Flex, Image, Typography } from 'antd';
 
 const { Title, Text } = Typography;
 
 interface MovieDetailsProps {
-  item: Movie;
+  item: TransformedMovie;
 }
 
 const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {

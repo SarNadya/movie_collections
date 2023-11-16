@@ -1,11 +1,12 @@
 import { FC } from 'react';
-import { Movie } from '../types/Movie';
+// import { TransformedMovie } from '../types/Movie';
 import { Card } from 'antd';
 import { StarTwoTone } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';
+import { TransformedMovie } from '../types/Movie';
 
 interface MovieItemProps {
-  item: Movie;
+  item: TransformedMovie;
 }
 
 export const MovieItem: FC<MovieItemProps> = ({ item }) => {

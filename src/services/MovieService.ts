@@ -1,8 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { Movies } from '../types/Movies';
 import { API_KEY, API_URL } from '../constants/api';
-import { transformMoviesResponse } from '../utils/transformResponse';
-import { Movie } from '../types/Movie';
+import {
+  transformMoviesResponse,
+  transformMoviesResponseDetails,
+} from '../utils/transformResponse';
+import { TransformedMovie } from '../types/Movie';
 
 export const movieAPI = createApi({
   reducerPath: 'movieAPI',
@@ -13,8 +16,12 @@ export const movieAPI = createApi({
         `/movie?field=rating.imdb=8-10&limit=${limit}&token=${API_KEY}`,
       transformResponse: transformMoviesResponse,
     }),
-    fetchMovieById: build.query<Movie, string | string[] | undefined>({
+    fetchMovieById: build.query<
+      TransformedMovie,
+      string | string[] | undefined
+    >({
       query: (id) => `/movie/${id}?field&token=${API_KEY}`,
+      transformResponse: transformMoviesResponseDetails,
     }),
   }),
 });
