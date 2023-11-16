@@ -1,25 +1,24 @@
-import React from 'react';
-import { movieAPI } from '../../services/MovieService';
+import { useFetchAllMoviesQuery } from '../../services/MovieService';
 import { MovieList } from '../../components/MovieList';
-import { Spin, Typography } from 'antd';
+import { Typography } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
+import Loader from '../../components/UI/Loader';
 
 const { Title } = Typography;
 
 const MainPage = () => {
   const { moviesLimit } = useTypedSelector((state) => state.loadReducer);
-  const { data, isLoading, error } =
-    movieAPI.useFetchAllMoviesQuery(moviesLimit);
+  const { data, isLoading, error } = useFetchAllMoviesQuery(moviesLimit);
 
   return (
     <div
       style={{
-        margin: '40px 20px',
+        margin: '50px 20px',
         textAlign: 'center',
         minHeight: '100vh',
       }}
     >
-      {isLoading && <Spin size="large" />}
+      {isLoading && <Loader />}
       {error && (
         <Title level={3} style={{ color: 'red' }}>
           Ошибка загрузки

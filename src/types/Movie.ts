@@ -29,7 +29,13 @@ export interface MoviePerson {
   name: string;
   enName: string;
   description: string;
-  enProfession: 'director' | 'actor' | 'design' | 'producer' | 'composer' | 'editor';
+  enProfession:
+    | 'director'
+    | 'actor'
+    | 'design'
+    | 'producer'
+    | 'composer'
+    | 'editor';
   photo: string;
 }
 
@@ -99,7 +105,7 @@ export interface Movie {
   distributors: MovieDistributors;
   fees: MovieFees;
   facts: Fact[];
-  genres: { name: string }[];
+  genres?: { name: string }[];
   id: number;
   enName: string;
   images: { framesCount: number };
@@ -130,4 +136,18 @@ export interface Movie {
   videos: { trailers: MovieTrailer[] };
   votes: MovieRating;
   year: number;
+}
+
+export interface TransformedMovie {
+  ageRating?: number;
+  alternativeName: string;
+  countries?: { name: string }[];
+  description?: string;
+  genres?: { name: string }[];
+  id: number;
+  name: string;
+  poster: MoviePoster;
+  rating?: MovieRating;
+  videos?: { trailers: MovieTrailer[] };
+  year?: number;
 }
