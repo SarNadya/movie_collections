@@ -1,4 +1,3 @@
-import React from 'react';
 import { useFetchAllMoviesQuery } from '../../services/MovieService';
 import { MovieList } from '../../components/MovieList';
 import { Spin, Typography } from 'antd';
