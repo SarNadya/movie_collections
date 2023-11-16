@@ -2,7 +2,7 @@ import { Typography } from 'antd';
 import { useFetchMovieByIdQuery } from '../../services/MovieService';
 import { useParams } from 'react-router';
 import MovieDetails from '../../components/MovieDetails';
-import Loader from '../../components/UI/Loader';
+import PageLoader from '../../components/UI/PageLoader/PageLoader';
 
 const { Title } = Typography;
 
@@ -18,7 +18,7 @@ const MoviePage = () => {
         minHeight: '100vh',
       }}
     >
-      {isLoading && <Loader />}
+      {isLoading && <PageLoader />}
       {error && (
         <Title level={3} style={{ color: 'red' }}>
           Ошибка загрузки

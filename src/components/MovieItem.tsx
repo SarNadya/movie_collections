@@ -1,5 +1,4 @@
 import { FC } from 'react';
-// import { TransformedMovie } from '../types/Movie';
 import { Card } from 'antd';
 import { StarTwoTone } from '@ant-design/icons';
 import { NavLink } from 'react-router-dom';

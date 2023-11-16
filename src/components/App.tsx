@@ -6,7 +6,8 @@ import { Layout } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import '../styles/index.sass';
 import { MoviePageAsync } from '../pages/MoviePage/MoviePage.async';
-import Loader from './UI/Loader';
+import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import PageLoader from './UI/PageLoader/PageLoader';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
           <NavLink to={'/authorization'}>Авторизация</NavLink>
         </Header>
         <Content>
-          <Suspense fallback={<Loader />}>
+          <Suspense fallback={<PageLoader />}>
             <Routes>
               <Route path={'/'} element={<MainPageAsync />} />
               <Route
@@ -25,6 +26,7 @@ function App() {
                 element={<AuthorizationPageAsync />}
               />
               <Route path={'/movie/:id'} element={<MoviePageAsync />} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           </Suspense>
         </Content>
