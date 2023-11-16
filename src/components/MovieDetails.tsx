@@ -20,9 +20,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
     genres,
     countries,
     videos,
-  } = {
-    ...item,
-  };
+  } = item;
 
   return (
     <div style={{ padding: '20px' }}>
