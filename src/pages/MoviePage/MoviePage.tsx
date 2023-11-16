@@ -1,7 +1,8 @@
-import { Spin, Typography } from 'antd';
+import { Typography } from 'antd';
 import { useFetchMovieByIdQuery } from '../../services/MovieService';
 import { useParams } from 'react-router';
 import MovieDetails from '../../components/MovieDetails';
+import Loader from '../../components/UI/Loader';
 
 const { Title } = Typography;
 
@@ -17,7 +18,7 @@ const MoviePage = () => {
         minHeight: '100vh',
       }}
     >
-      {isLoading && <Spin size="large" />}
+      {isLoading && <Loader />}
       {error && (
         <Title level={3} style={{ color: 'red' }}>
           Ошибка загрузки
