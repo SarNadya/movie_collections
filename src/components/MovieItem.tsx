@@ -6,14 +6,16 @@ import { TransformedMovie } from '../types/Movie';
 
 interface MovieItemProps {
   item: TransformedMovie;
+  isLoading: boolean;
 }
 
-export const MovieItem: FC<MovieItemProps> = ({ item }) => {
+export const MovieItem: FC<MovieItemProps> = ({ item, isLoading }) => {
   const { name, alternativeName, poster, rating, year, id } = item;
   const { Meta } = Card;
   return (
     <NavLink to={`/movie/${id}`}>
       <Card
+        loading={isLoading}
         hoverable
         size="small"
         style={{ width: 200 }}
