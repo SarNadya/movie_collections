@@ -39,19 +39,19 @@ const items: MenuItem[] = [
 
 const MovieHeader = () => {
   return (
-    <ConfigProvider
-      theme={{
-        token: {
-          colorPrimary: 'transparent',
-        },
-      }}
-    >
-      <div className={s.container}>
-        <div>
-          <NavLink to={'/'}>
-            <img src={logo} alt="logo" className={s.logo} />
-          </NavLink>
-        </div>
+    <div className={s.container}>
+      <div>
+        <NavLink to={'/'}>
+          <img src={logo} alt="logo" className={s.logo} />
+        </NavLink>
+      </div>
+      <ConfigProvider
+        theme={{
+          token: {
+            colorPrimary: 'transparent',
+          },
+        }}
+      >
         <Menu
           theme="dark"
           mode="horizontal"
@@ -59,8 +59,8 @@ const MovieHeader = () => {
           triggerSubMenuAction="click"
           className={s.menu}
         />
-      </div>
-    </ConfigProvider>
+      </ConfigProvider>
+    </div>
   );
 };
 
