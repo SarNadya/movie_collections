@@ -2,7 +2,7 @@ import { useFetchAllMoviesQuery } from '../../services/MovieService';
 import { MovieList } from '../../components/MovieList';
 import { Typography } from 'antd';
 import { useTypedSelector } from '../../hooks/useTypedSelector';
-import Loader from '../../components/UI/Loader';
+import PageLoader from '../../components/UI/PageLoader/PageLoader';
 
 const { Title } = Typography;
 
@@ -18,7 +18,7 @@ const MainPage = () => {
         minHeight: '100vh',
       }}
     >
-      {isLoading && <Loader />}
+      {isLoading && <PageLoader />}
       {error && (
         <Title level={3} style={{ color: 'red' }}>
           Ошибка загрузки

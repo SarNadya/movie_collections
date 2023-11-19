@@ -1,32 +1,18 @@
-import { Suspense } from 'react';
-import { NavLink, Route, Routes } from 'react-router-dom';
-import { AuthorizationPageAsync } from '../pages/AuthorizationPage/AuthorizationPage.async';
-import { MainPageAsync } from '../pages/MainPage/MainPage.async';
 import { Layout } from 'antd';
 import { Content, Header } from 'antd/es/layout/layout';
 import '../styles/index.sass';
-import { MoviePageAsync } from '../pages/MoviePage/MoviePage.async';
-import Loader from './UI/Loader';
+import AppRouter from './AppRouter';
+import MovieHeader from './MovieHeader/MovieHeader';
 
 function App() {
   return (
     <div className="app">
       <Layout>
         <Header>
-          <NavLink to={'/'}>Главная</NavLink>
-          <NavLink to={'/authorization'}>Авторизация</NavLink>
+          <MovieHeader />
         </Header>
         <Content>
-          <Suspense fallback={<Loader />}>
-            <Routes>
-              <Route path={'/'} element={<MainPageAsync />} />
-              <Route
-                path={'/authorization'}
-                element={<AuthorizationPageAsync />}
-              />
-              <Route path={'/movie/:id'} element={<MoviePageAsync />} />
-            </Routes>
-          </Suspense>
+          <AppRouter />
         </Content>
       </Layout>
     </div>
