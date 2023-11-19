@@ -1,9 +1,9 @@
-import { Button, ConfigProvider, Menu } from 'antd';
+import { ConfigProvider, Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
 import logo from './img/logo.png';
-import { SearchOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import s from './MovieHeader.module.sass';
+import Search from '../Search/Search';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -24,13 +24,7 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem(
-    '',
-    '1',
-    <Button type="text">
-      <SearchOutlined style={{ fontSize: '26px', color: '#fff' }} />
-    </Button>
-  ),
+  getItem('', '1', <Search />),
   getItem('Фильмы', '2', <NavLink to={'/'} />),
   getItem('Избранное', '3', <NavLink to={'/favorites'} />),
   getItem('История', '4', <NavLink to={'/history'} />),

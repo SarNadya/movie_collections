@@ -23,7 +23,15 @@ export const movieAPI = createApi({
       query: (id) => `/movie/${id}?field&token=${API_KEY}`,
       transformResponse: transformMoviesResponseDetails,
     }),
+    fetchMoviesBySearch: build.query<Movies, string | undefined>({
+      query: (query) =>
+        `/movie/search?query=${query}&field&limit=30&token=${API_KEY}`,
+    }),
   }),
 });
 
-export const { useFetchAllMoviesQuery, useFetchMovieByIdQuery } = movieAPI;
+export const {
+  useFetchAllMoviesQuery,
+  useFetchMovieByIdQuery,
+  useFetchMoviesBySearchQuery,
+} = movieAPI;

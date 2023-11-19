@@ -40,8 +40,8 @@ export interface MoviePerson {
 }
 
 export interface MoviePoster {
-  previewUrl: string;
-  url: string;
+  previewUrl: string | undefined;
+  url: string | undefined;
 }
 
 interface MoviePremiere {
@@ -101,7 +101,7 @@ export interface Movie {
   budget: MovieBudget;
   countries: { name: string }[];
   createDate: Date;
-  description: string;
+  description?: string;
   distributors: MovieDistributors;
   fees: MovieFees;
   facts: Fact[];
@@ -133,7 +133,7 @@ export interface Movie {
   typeNumber: number;
   updateDates: Date[];
   updatedAt: Date;
-  videos: { trailers: MovieTrailer[] };
+  videos?: { trailers: MovieTrailer[] };
   votes: MovieRating;
   year: number;
 }
