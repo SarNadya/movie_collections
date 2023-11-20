@@ -151,3 +151,8 @@ export interface TransformedMovie {
   videos?: { trailers: MovieTrailer[] };
   year?: number;
 }
+
+export interface SuggestMovie {
+  id: number;
+  poster: MoviePoster;
+}

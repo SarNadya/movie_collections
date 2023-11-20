@@ -1,7 +1,7 @@
 import { FC } from 'react';
 import { Card, Space, Spin } from 'antd';
 import { useFetchSearchSuggestQuery } from '../../services/MovieService';
-import { NavLink } from 'react-router-dom';
+import SearchItem from '../SearchItem/SearchItem';
 
 interface SearchSuggestProps {
   value: string;
@@ -26,13 +26,7 @@ const SearchSuggest: FC<SearchSuggestProps> = ({ value }) => {
         ) : data?.docs.length ? (
           <Space size={16} wrap style={{ justifyContent: 'center' }}>
             {data?.docs?.map((item) => (
-              <NavLink to={`/movie/${item.id}`} key={item.id}>
-                <img
-                  alt="poster"
-                  src={item.poster.previewUrl}
-                  style={{ width: '60px' }}
-                />
-              </NavLink>
+              <SearchItem key={item.id} item={item} />
             ))}
           </Space>
         ) : (
