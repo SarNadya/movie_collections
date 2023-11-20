@@ -1,11 +1,14 @@
+import { FC } from 'react';
 import { Card, Space, Spin } from 'antd';
 import { useFetchSearchSuggestQuery } from '../../services/MovieService';
-import { useTypedSelector } from '../../hooks/useTypedSelector';
 import { NavLink } from 'react-router-dom';
 
-const SearchSuggest = () => {
-  const { search } = useTypedSelector((state) => state.searchReducer);
-  const { data, isLoading, isFetching } = useFetchSearchSuggestQuery(search);
+interface SearchSuggestProps {
+  value: string;
+}
+
+const SearchSuggest: FC<SearchSuggestProps> = ({ value }) => {
+  const { data, isLoading, isFetching } = useFetchSearchSuggestQuery(value);
 
   return (
     <div>
