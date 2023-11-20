@@ -24,7 +24,7 @@ const SearchResult = () => {
           Ошибка загрузки
         </Title>
       )}
-      <Title level={2}>Результат поиска</Title>
+      {data && <Title level={2}>Результат поиска</Title>}
       <Space size={16} wrap style={{ justifyContent: 'center' }}>
         {data?.docs?.map((item) => (
           <MovieItem item={item} key={item.id} isLoading={isLoading} />
