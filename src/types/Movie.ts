@@ -140,12 +140,12 @@ export interface Movie {
 
 export interface TransformedMovie {
   ageRating?: number;
-  alternativeName: string;
+  alternativeName?: string;
   countries?: { name: string }[];
   description?: string;
   genres?: { name: string }[];
   id: number;
-  name: string;
+  name?: string;
   poster: MoviePoster;
   rating?: MovieRating;
   videos?: { trailers: MovieTrailer[] };

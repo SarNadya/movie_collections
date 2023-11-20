@@ -34,18 +34,18 @@ const items: MenuItem[] = [
 const MovieHeader = () => {
   return (
     <div className={s.container}>
-      <div>
-        <NavLink to={'/'}>
-          <img src={logo} alt="logo" className={s.logo} />
-        </NavLink>
-      </div>
       <ConfigProvider
         theme={{
           token: {
-            colorPrimary: 'transparent',
+            colorPrimary: '#001529',
           },
         }}
       >
+        <div>
+          <NavLink to={'/'}>
+            <img src={logo} alt="logo" className={s.logo} />
+          </NavLink>
+        </div>
         <Menu
           theme="dark"
           mode="horizontal"

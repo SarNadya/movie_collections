@@ -1,4 +1,4 @@
 import { loadMoreMovies } from './reducers/loadSlice';
-import { setSearch } from './reducers/searchSlice';
+import { setSearch, setVisible } from './reducers/searchSlice';
 
-export { loadMoreMovies, setSearch };
+export { loadMoreMovies, setSearch, setVisible };

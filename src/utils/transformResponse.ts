@@ -51,3 +51,18 @@ export const transformSearchMovies = (response: Movies) => {
     }),
   };
 };
+
+export const transformSearchSuggest = (response: Movies) => {
+  const filteredMovies = response.docs.filter(
+    (item) => item.poster && item.poster.previewUrl
+  );
+  return {
+    ...response,
+    docs: filteredMovies.map((item) => {
+      return {
+        poster: item.poster,
+        id: item.id,
+      };
+    }),
+  };
+};
