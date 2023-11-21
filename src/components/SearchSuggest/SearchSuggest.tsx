@@ -15,7 +15,7 @@ const SearchSuggest: FC<SearchSuggestProps> = ({ value }) => {
       <Card
         style={{
           position: 'absolute',
-          top: '38px',
+          top: '50px',
           width: '200px',
           zIndex: '10',
           textAlign: 'center',

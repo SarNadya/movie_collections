@@ -1,4 +1,4 @@
-import { ConfigProvider, Menu } from 'antd';
+import { ConfigProvider, Flex, Menu } from 'antd';
 import { NavLink } from 'react-router-dom';
 import logo from './img/logo.png';
 import type { MenuProps } from 'antd';
@@ -24,11 +24,10 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem('', '1', <Search />),
-  getItem('Фильмы', '2', <NavLink to={'/'} />),
-  getItem('Избранное', '3', <NavLink to={'/favorites'} />),
-  getItem('История', '4', <NavLink to={'/history'} />),
-  getItem('Вход', '5', <NavLink to={'/authorization'} />),
+  getItem('Фильмы', '1', <NavLink to={'/'} />),
+  getItem('Избранное', '2', <NavLink to={'/favorites'} />),
+  getItem('История', '3', <NavLink to={'/history'} />),
+  getItem('Вход', '4', <NavLink to={'/authorization'} />),
 ];
 
 const MovieHeader = () => {
@@ -41,11 +40,17 @@ const MovieHeader = () => {
           },
         }}
       >
-        <div>
+        <Flex
+          align="center"
+          gap="large"
+          justify="space-between"
+          style={{ width: '100%' }}
+        >
           <NavLink to={'/'}>
             <img src={logo} alt="logo" className={s.logo} />
           </NavLink>
-        </div>
+          <Search />
+        </Flex>
         <Menu
           theme="dark"
           mode="horizontal"
