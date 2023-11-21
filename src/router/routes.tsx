@@ -5,6 +5,7 @@ import { HistoryPageAsync } from '../pages/HistoryPage/HistoryPage.async';
 import { MainPageAsync } from '../pages/MainPage/MainPage.async';
 import { MoviePageAsync } from '../pages/MoviePage/MoviePage.async';
 import NotFoundPage from '../pages/NotFoundPage/NotFoundPage';
+import SearchResult from '../pages/SearchResult/SearchResult';
 
 export const publicRoutes = [
   { path: '/', component: <MainPageAsync /> },
@@ -16,6 +17,7 @@ export const publicRoutes = [
   { path: '*', component: <NotFoundPage /> },
   { path: '/favorites', component: <Navigate replace to="/authorization" /> },
   { path: '/history', component: <Navigate replace to="/authorization" /> },
+  { path: '/search/:value', component: <SearchResult /> },
 ];
 
 export const privateRoutes = [
@@ -28,4 +30,5 @@ export const privateRoutes = [
   { path: '*', component: <NotFoundPage /> },
   { path: '/favorites', component: <FavoritesPageAsync /> },
   { path: '/history', component: <HistoryPageAsync /> },
+  { path: '/search/:value', component: <SearchResult /> },
 ];

@@ -13,7 +13,7 @@ const MainPage = () => {
   return (
     <div
       style={{
-        margin: '50px 20px',
+        margin: '30px 20px',
         textAlign: 'center',
         minHeight: '100vh',
       }}

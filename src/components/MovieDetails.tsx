@@ -75,13 +75,19 @@ const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
       <Title level={3} style={{ margin: '20px 0' }}>
         Трейлер:
       </Title>
-      <div>
-        <iframe
-          width="620px"
-          height="415px"
-          src={videos?.trailers[0].url}
-        ></iframe>
-      </div>
+      {videos?.trailers.length ? (
+        <div>
+          <iframe
+            width="620px"
+            height="415px"
+            src={videos?.trailers[0].url}
+          ></iframe>
+        </div>
+      ) : (
+        <Title level={4} style={{ color: 'red' }}>
+          Not Found
+        </Title>
+      )}
     </div>
   );
 };
