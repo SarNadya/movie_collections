@@ -27,7 +27,7 @@ const items: MenuItem[] = [
   getItem('Фильмы', '1', <NavLink to={'/'} />),
   getItem('Избранное', '2', <NavLink to={'/favorites'} />),
   getItem('История', '3', <NavLink to={'/history'} />),
-  getItem('Вход', '4', <NavLink to={'/authorization'} />),
+  getItem('Вход', '4', <NavLink to={'/login'} />),
 ];
 
 const MovieHeader = () => {
