@@ -1,12 +1,45 @@
-import React from 'react';
 import { Button, Card, Typography, Form, Input } from 'antd';
+import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type FieldType = {
-  username?: string;
+  email?: string;
   password?: string;
 };
 
 const SignUp = () => {
+  const [user, setUser] = useState({
+    email: '',
+    password: '',
+    favorites: [],
+    history: [],
+  });
+
+  const navigate = useNavigate();
+
+  const handleRegister = () => {
+    if (localStorage.getItem(user.email)) {
+      alert('Пользователь с таким email уже существует');
+    }
+    localStorage.setItem(user.email, JSON.stringify(user));
+    alert('Вы успешно зарегистрированы. Теперь можете войти в аккаунт.');
+    navigate('/login');
+  };
+
+  const onChangeEmail = (value: string) => {
+    setUser({
+      ...user,
+      email: value,
+    });
+  };
+
+  const onChangePassword = (value: string) => {
+    setUser({
+      ...user,
+      password: value,
+    });
+  };
+
   return (
     <Card size="small">
       <Typography.Title level={3} style={{ marginBottom: '40px' }}>
@@ -18,25 +51,44 @@ const SignUp = () => {
         wrapperCol={{ span: 16 }}
         style={{ maxWidth: 600 }}
         autoComplete="off"
+        onFinish={handleRegister}
       >
         <Form.Item<FieldType>
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
+          label="Email"
+          name="email"
+          rules={[
+            { required: true, message: 'Please input your email!' },
+            { type: 'email', message: 'Email is not a valid!' },
+          ]}
         >
-          <Input />
+          <Input
+            value={user.email}
+            onChange={(e) => onChangeEmail(e.target.value)}
+          />
         </Form.Item>
 
         <Form.Item<FieldType>
           label="Password"
           name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
+          rules={[
+            { required: true, message: 'Please input your password!' },
+            {
+              min: 6,
+              max: 10,
+              message: 'Must be between 6 and 10!',
+            },
+          ]}
         >
-          <Input.Password />
+          <Input.Password
+            value={user.password}
+            onChange={(e) => onChangePassword(e.target.value)}
+          />
         </Form.Item>
 
         <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary">Зарегистрироваться</Button>
+          <Button type="primary" htmlType="submit">
+            Зарегистрироваться
+          </Button>
         </Form.Item>
       </Form>
     </Card>
