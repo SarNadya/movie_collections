@@ -15,15 +15,18 @@ const SignUp = () => {
     history: [],
   });
 
+  const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const handleRegister = () => {
     if (localStorage.getItem(user.email)) {
       alert('Пользователь с таким email уже существует');
+      form.resetFields();
+    } else {
+      localStorage.setItem(user.email, JSON.stringify(user));
+      alert('Вы успешно зарегистрированы. Теперь можете войти в аккаунт.');
+      navigate('/login');
     }
-    localStorage.setItem(user.email, JSON.stringify(user));
-    alert('Вы успешно зарегистрированы. Теперь можете войти в аккаунт.');
-    navigate('/login');
   };
 
   const onChangeEmail = (value: string) => {
@@ -46,6 +49,7 @@ const SignUp = () => {
         Регистрация
       </Typography.Title>
       <Form
+        form={form}
         name="basic"
         labelCol={{ span: 8 }}
         wrapperCol={{ span: 16 }}
