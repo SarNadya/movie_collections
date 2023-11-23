@@ -1,10 +1,11 @@
-import { Suspense } from 'react';
+import { Suspense, useContext } from 'react';
 import PageLoader from './UI/PageLoader/PageLoader';
 import { Route, Routes } from 'react-router-dom';
 import { privateRoutes, publicRoutes } from '../router/routes';
+import { AuthContext } from '../context/AuthContext';
 
 const AppRouter = () => {
-  const isAuth = false;
+  const { isAuth } = useContext(AuthContext);
 
   return (
     <Suspense fallback={<PageLoader />}>

@@ -1,6 +1,9 @@
 import { Button, Card, Typography, Form, Input } from 'antd';
 import { useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+
+const { Text, Title } = Typography;
 
 type FieldType = {
   email?: string;
@@ -45,9 +48,9 @@ const SignUp = () => {
 
   return (
     <Card size="small">
-      <Typography.Title level={3} style={{ marginBottom: '40px' }}>
+      <Title level={3} style={{ marginBottom: '40px' }}>
         Регистрация
-      </Typography.Title>
+      </Title>
       <Form
         form={form}
         name="basic"
@@ -95,6 +98,10 @@ const SignUp = () => {
           </Button>
         </Form.Item>
       </Form>
+      <Text italic>Уже зарегистрированы?</Text>
+      <p>
+        <NavLink to={'/login'}>Войти в аккаунт</NavLink>
+      </p>
     </Card>
   );
 };
