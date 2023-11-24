@@ -2,6 +2,7 @@ import { useState, useContext } from 'react';
 import { Button, Card, Form, Input, Typography } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
+import { useActions } from '../hooks/useActions';
 
 const { Text, Title } = Typography;
 
@@ -11,41 +12,42 @@ type FieldType = {
 };
 
 const SignIn = () => {
-  const [user, setUser] = useState({
+  const { setUser } = useActions();
+
+  const [initialUser, setInitialUser] = useState({
     email: '',
     password: '',
   });
 
-  const [savedUser, setSavedUser] = useState({});
   const { setIsAuth } = useContext(AuthContext);
 
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const onChangeEmail = (value: string) => {
-    setUser({
-      ...user,
+    setInitialUser({
+      ...initialUser,
       email: value,
     });
   };
 
   const onChangePassword = (value: string) => {
-    setUser({
-      ...user,
+    setInitialUser({
+      ...initialUser,
       password: value,
     });
   };
 
   const handleLogin = () => {
-    if (!localStorage.getItem(user.email)) {
+    if (!localStorage.getItem(initialUser.email)) {
       alert('Пользователя с таким email не существует');
       form.resetFields();
     } else {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const initial: any = localStorage.getItem(user.email);
-      const initialUser = JSON.parse(initial);
-      if (initialUser.password == user.password) {
-        setSavedUser(initialUser);
+      const saved: any = localStorage.getItem(initialUser.email);
+      const savedUser = JSON.parse(saved);
+      if (savedUser.password == initialUser.password) {
+        setUser(savedUser);
         setIsAuth(true);
         localStorage.setItem('auth', 'true');
         alert('Успешный вход');
@@ -80,7 +82,7 @@ const SignIn = () => {
           ]}
         >
           <Input
-            value={user.email}
+            value={initialUser.email}
             onChange={(e) => onChangeEmail(e.target.value)}
           />
         </Form.Item>
@@ -98,7 +100,7 @@ const SignIn = () => {
           ]}
         >
           <Input.Password
-            value={user.password}
+            value={initialUser.password}
             onChange={(e) => onChangePassword(e.target.value)}
           />
         </Form.Item>
