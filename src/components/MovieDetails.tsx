@@ -1,6 +1,7 @@
 import { FC } from 'react';
 import { TransformedMovie } from '../types/Movie';
-import { Button, Card, Divider, Flex, Image, Typography } from 'antd';
+import { Card, Divider, Flex, Image, Typography } from 'antd';
+import FavoritesButton from './UI/FavoritesButton';
 
 const { Title, Text } = Typography;
 
@@ -34,7 +35,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
                 <Text type="secondary">{alternativeName}</Text>
               </p>
             </Flex>
-            <Button>Добавить в избранное</Button>
+            <FavoritesButton id={item.id} />
           </Flex>
           <Divider />
           <p>
