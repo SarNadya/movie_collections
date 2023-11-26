@@ -1,7 +1,8 @@
-import { FC } from 'react';
+import { FC, useContext } from 'react';
 import { TransformedMovie } from '../types/Movie';
 import { Card, Divider, Flex, Image, Typography } from 'antd';
 import FavoritesButton from './UI/FavoritesButton';
+import { AuthContext } from '../context/AuthContext';
 
 const { Title, Text } = Typography;
 
@@ -10,6 +11,8 @@ interface MovieDetailsProps {
 }
 
 const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
+  const { isAuth } = useContext(AuthContext);
+
   const {
     alternativeName,
     name,
@@ -35,7 +38,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
                 <Text type="secondary">{alternativeName}</Text>
               </p>
             </Flex>
-            <FavoritesButton id={item.id} />
+            {isAuth && <FavoritesButton id={item.id} />}
           </Flex>
           <Divider />
           <p>

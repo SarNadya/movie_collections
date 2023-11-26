@@ -33,7 +33,7 @@ const FavoritesButton: FC<FavoritesButtonProps> = ({ id }) => {
             <HeartOutlined style={{ color: 'red' }} />
           )
         }
-        style={{ position: 'absolute', top: '7px', right: '9px', zIndex: '10' }}
+        style={{ position: 'absolute', top: '7px', right: '9px', zIndex: '9' }}
         onClick={toggleFavorites}
       />
     </div>
