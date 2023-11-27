@@ -18,11 +18,14 @@ const MoviePage = () => {
         minHeight: '100vh',
       }}
     >
-      {isLoading && <PageLoader />}
-      {error && (
-        <Title level={3} style={{ color: 'red' }}>
-          Ошибка загрузки
-        </Title>
+      {isLoading ? (
+        <PageLoader />
+      ) : (
+        error && (
+          <Title level={3} style={{ color: 'red' }}>
+            Ошибка загрузки
+          </Title>
+        )
       )}
       {data && <MovieDetails item={data} />}
     </div>
