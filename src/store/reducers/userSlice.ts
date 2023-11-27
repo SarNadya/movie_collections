@@ -36,10 +36,22 @@ export const userSlice = createSlice({
     removeFavorites(state, { payload }) {
       state.favorites = state.favorites.filter((el) => el !== payload);
     },
+    addHistory(state, { payload }) {
+      state.history.push(payload);
+    },
+    removeHistory(state, { payload }) {
+      state.history = state.history.filter((el) => el !== payload);
+    },
   },
 });
 
-export const { setUser, resetUser, addFavorites, removeFavorites } =
-  userSlice.actions;
+export const {
+  setUser,
+  resetUser,
+  addFavorites,
+  removeFavorites,
+  addHistory,
+  removeHistory,
+} = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
