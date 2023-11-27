@@ -18,13 +18,13 @@ const SearchResult = () => {
         minHeight: '100vh',
       }}
     >
-      {isLoading && <PageLoader />}
-      {error && (
+      {isLoading ? (
+        <PageLoader />
+      ) : error ? (
         <Title level={3} style={{ color: 'red' }}>
           Ошибка загрузки
         </Title>
-      )}
-      {data?.docs.length ? (
+      ) : data?.docs.length ? (
         <Title level={2}>Результат поиска</Title>
       ) : (
         <Title level={2}>Ничего не нашлось</Title>
