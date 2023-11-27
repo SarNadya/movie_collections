@@ -6,7 +6,7 @@ import type { MenuProps } from 'antd';
 import s from './MovieHeader.module.sass';
 import Search from '../Search/Search';
 import { AuthContext } from '../../context/AuthContext';
-import ButtonLogout from '../UI/PageLoader/ButtonLogout/ButtonLogout';
+import ButtonLogout from '../UI/ButtonLogout/ButtonLogout';
 
 type MenuItem = Required<MenuProps>['items'][number];
 

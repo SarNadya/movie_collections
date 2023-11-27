@@ -3,6 +3,7 @@ import App from './components/App';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { initStore } from './store/store';
+import ErrorBoundary from './components/ErrorBoundary/ErrorBoundary';
 
 const store = initStore();
 
@@ -12,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <Provider store={store}>
     <BrowserRouter>
-      <App />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </BrowserRouter>
   </Provider>
 );

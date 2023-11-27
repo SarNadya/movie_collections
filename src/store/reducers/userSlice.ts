@@ -1,6 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+interface UserState {
+  email: string;
+  password: string;
+  favorites: number[];
+  history: string[];
+}
+
+const initialState: UserState = {
   email: '',
   password: '',
   favorites: [],
@@ -23,9 +30,16 @@ export const userSlice = createSlice({
       state.favorites = [];
       state.history = [];
     },
+    addFavorites(state, { payload }) {
+      state.favorites.push(payload);
+    },
+    removeFavorites(state, { payload }) {
+      state.favorites = state.favorites.filter((el) => el !== payload);
+    },
   },
 });
 
-export const { setUser, resetUser } = userSlice.actions;
+export const { setUser, resetUser, addFavorites, removeFavorites } =
+  userSlice.actions;
 
 export const userReducer = userSlice.reducer;
