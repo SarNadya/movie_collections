@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from 'react';
+import { createContext, useState } from 'react';
 
 interface AuthContextType {
   isAuth: boolean;
@@ -15,13 +15,15 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
-  const [isAuth, setIsAuth] = useState(false);
-
-  useEffect(() => {
+  const [isAuth, setIsAuth] = useState(() => {
+    let isAuth;
     if (localStorage.getItem('auth')) {
-      setIsAuth(true);
+      isAuth = true;
+    } else {
+      isAuth = false;
     }
-  }, []);
+    return isAuth;
+  });
 
   return (
     <div>
