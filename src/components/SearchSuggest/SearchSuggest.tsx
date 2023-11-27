@@ -1,13 +1,13 @@
-import { FC } from 'react';
 import { Card, Space, Spin } from 'antd';
 import { useFetchSearchSuggestQuery } from '../../services/MovieService';
 import SearchItem from '../SearchItem/SearchItem';
+import PropTypes from 'prop-types';
 
-interface SearchSuggestProps {
+interface Props {
   value: string;
 }
 
-const SearchSuggest: FC<SearchSuggestProps> = ({ value }) => {
+const SearchSuggest = ({ value }: Props) => {
   const { data, isLoading, isFetching } = useFetchSearchSuggestQuery(value);
 
   return (
@@ -35,6 +35,10 @@ const SearchSuggest: FC<SearchSuggestProps> = ({ value }) => {
       </Card>
     </div>
   );
+};
+
+SearchSuggest.propTypes = {
+  value: PropTypes.string.isRequired,
 };
 
 export default SearchSuggest;

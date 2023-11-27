@@ -2,12 +2,13 @@ import { CloseOutlined } from '@ant-design/icons';
 import { Button, Card } from 'antd';
 import { FC } from 'react';
 import { useActions } from '../../hooks/useActions';
+import PropTypes from 'prop-types';
 
-interface HistoryItemProps {
+interface Props {
   value: string;
 }
 
-const HistoryItem: FC<HistoryItemProps> = ({ value }) => {
+const HistoryItem: FC<Props> = ({ value }) => {
   const { removeHistory } = useActions();
 
   const deletItem = () => {
@@ -31,6 +32,10 @@ const HistoryItem: FC<HistoryItemProps> = ({ value }) => {
       </Card>
     </div>
   );
+};
+
+HistoryItem.propTypes = {
+  value: PropTypes.string.isRequired,
 };
 
 export default HistoryItem;
