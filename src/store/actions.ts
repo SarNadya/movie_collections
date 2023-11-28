@@ -5,6 +5,8 @@ import {
   resetUser,
   addFavorites,
   removeFavorites,
+  addHistory,
+  removeHistory,
 } from './reducers/userSlice';
 
 export {
@@ -15,4 +17,6 @@ export {
   resetUser,
   addFavorites,
   removeFavorites,
+  addHistory,
+  removeHistory,
 };

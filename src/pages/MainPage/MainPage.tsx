@@ -18,11 +18,14 @@ const MainPage = () => {
         minHeight: '100vh',
       }}
     >
-      {isLoading && <PageLoader />}
-      {error && (
-        <Title level={3} style={{ color: 'red' }}>
-          Ошибка загрузки
-        </Title>
+      {isLoading ? (
+        <PageLoader />
+      ) : (
+        error && (
+          <Title level={3} style={{ color: 'red' }}>
+            Ошибка загрузки
+          </Title>
+        )
       )}
       {data && <Title level={2}>Лучшие фильмы</Title>}
       <MovieList />

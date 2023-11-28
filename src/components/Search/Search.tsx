@@ -8,7 +8,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 
 const Search = () => {
   const { search, visible } = useTypedSelector((state) => state.searchReducer);
-  const { setSearch, setVisible } = useActions();
+  const { setSearch, setVisible, addHistory } = useActions();
   const { debouncedValue, setDebouncedValue } = useDebounce(search.trim(), 300);
 
   const navigate = useNavigate();
@@ -19,6 +19,7 @@ const Search = () => {
   };
 
   const handleClick = () => {
+    addHistory(debouncedValue);
     setSearch('');
     setDebouncedValue('');
     navigate(`/search/${debouncedValue}`);

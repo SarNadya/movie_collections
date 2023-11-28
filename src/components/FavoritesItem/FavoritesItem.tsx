@@ -4,12 +4,13 @@ import { useFetchMovieByIdQuery } from '../../services/MovieService';
 import { NavLink } from 'react-router-dom';
 import Meta from 'antd/es/card/Meta';
 import FavoritesButton from '../UI/FavoritesButton';
+import PropTypes from 'prop-types';
 
-interface FavoritesItemProps {
+interface Props {
   id: number;
 }
 
-const FavoritesItem: FC<FavoritesItemProps> = ({ id }) => {
+const FavoritesItem: FC<Props> = ({ id }) => {
   const { data, isLoading, error } = useFetchMovieByIdQuery(String(id));
 
   let posterImg;
@@ -36,6 +37,10 @@ const FavoritesItem: FC<FavoritesItemProps> = ({ id }) => {
       </NavLink>
     </div>
   );
+};
+
+FavoritesItem.propTypes = {
+  id: PropTypes.number.isRequired,
 };
 
 export default FavoritesItem;
