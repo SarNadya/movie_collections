@@ -4,6 +4,7 @@ import { AuthContext } from '../../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { useActions } from '../../../hooks/useActions';
 import { useTypedSelector } from '../../../hooks/useTypedSelector';
+import { localStorageUtil } from '../../../utils/localStorageUtil';
 
 const ButtonLogout = () => {
   const user = useTypedSelector((state) => state.userReducer);
@@ -13,8 +14,8 @@ const ButtonLogout = () => {
 
   const handleLogout = () => {
     setIsAuth(false);
-    localStorage.removeItem('auth');
-    localStorage.setItem(user.email, JSON.stringify(user));
+    localStorageUtil.clearAuth();
+    localStorageUtil.setUser(user.email, user);
     resetUser();
     navigate('/');
   };

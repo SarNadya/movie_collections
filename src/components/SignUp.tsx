@@ -2,6 +2,7 @@ import { Button, Card, Typography, Form, Input } from 'antd';
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { localStorageUtil } from '../utils/localStorageUtil';
 
 const { Text, Title } = Typography;
 
@@ -22,11 +23,11 @@ const SignUp = () => {
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    if (localStorage.getItem(user.email)) {
+    if (localStorageUtil.getUser(user.email)) {
       alert('Пользователь с таким email уже существует');
       form.resetFields();
     } else {
-      localStorage.setItem(user.email, JSON.stringify(user));
+      localStorageUtil.setUser(user.email, user);
       alert('Вы успешно зарегистрированы. Теперь можете войти в аккаунт.');
       navigate('/login');
     }

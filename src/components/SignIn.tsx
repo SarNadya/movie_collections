@@ -3,6 +3,7 @@ import { Button, Card, Form, Input, Typography } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { useActions } from '../hooks/useActions';
+import { localStorageUtil } from '../utils/localStorageUtil';
 
 const { Text, Title } = Typography;
 
@@ -39,17 +40,15 @@ const SignIn = () => {
   };
 
   const handleLogin = () => {
-    if (!localStorage.getItem(initialUser.email)) {
+    if (!localStorageUtil.getUser(initialUser.email)) {
       alert('Пользователя с таким email не существует');
       form.resetFields();
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const saved: any = localStorage.getItem(initialUser.email);
-      const savedUser = JSON.parse(saved);
-      if (savedUser.password == initialUser.password) {
+      const savedUser = localStorageUtil.getUser(initialUser.email);
+      if (savedUser !== null && savedUser.password == initialUser.password) {
         setUser(savedUser);
         setIsAuth(true);
-        localStorage.setItem('auth', 'true');
+        localStorageUtil.setAuth();
         alert('Успешный вход');
         navigate('/');
       } else {
