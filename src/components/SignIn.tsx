@@ -1,8 +1,10 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Button, Card, Form, Input, Typography } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 import { useActions } from '../hooks/useActions';
+import { localStorageUtil } from '../utils/localStorageUtil';
+import { useInput } from '../hooks/useInput';
 
 const { Text, Title } = Typography;
 
@@ -12,11 +14,14 @@ type FieldType = {
 };
 
 const SignIn = () => {
+  const userEmail = useInput('');
+  const userPassword = useInput('');
+
   const { setUser } = useActions();
 
   const [initialUser, setInitialUser] = useState({
-    email: '',
-    password: '',
+    email: userEmail.value,
+    password: userPassword.value,
   });
 
   const { setIsAuth } = useContext(AuthContext);
@@ -24,32 +29,23 @@ const SignIn = () => {
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  const onChangeEmail = (value: string) => {
+  useEffect(() => {
     setInitialUser({
-      ...initialUser,
-      email: value,
+      email: userEmail.value,
+      password: userPassword.value,
     });
-  };
-
-  const onChangePassword = (value: string) => {
-    setInitialUser({
-      ...initialUser,
-      password: value,
-    });
-  };
+  }, [userEmail.value, userPassword.value]);
 
   const handleLogin = () => {
-    if (!localStorage.getItem(initialUser.email)) {
+    if (!localStorageUtil.getUser(initialUser.email)) {
       alert('Пользователя с таким email не существует');
       form.resetFields();
     } else {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const saved: any = localStorage.getItem(initialUser.email);
-      const savedUser = JSON.parse(saved);
-      if (savedUser.password == initialUser.password) {
+      const savedUser = localStorageUtil.getUser(initialUser.email);
+      if (savedUser !== null && savedUser.password == initialUser.password) {
         setUser(savedUser);
         setIsAuth(true);
-        localStorage.setItem('auth', 'true');
+        localStorageUtil.setAuth();
         alert('Успешный вход');
         navigate('/');
       } else {
@@ -81,10 +77,7 @@ const SignIn = () => {
             { type: 'email', message: 'Email is not a valid!' },
           ]}
         >
-          <Input
-            value={initialUser.email}
-            onChange={(e) => onChangeEmail(e.target.value)}
-          />
+          <Input value={userEmail.value} onChange={userEmail.onChange} />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -100,8 +93,8 @@ const SignIn = () => {
           ]}
         >
           <Input.Password
-            value={initialUser.password}
-            onChange={(e) => onChangePassword(e.target.value)}
+            value={userPassword.value}
+            onChange={userPassword.onChange}
           />
         </Form.Item>
 

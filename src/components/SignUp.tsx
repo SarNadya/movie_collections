@@ -1,7 +1,9 @@
 import { Button, Card, Typography, Form, Input } from 'antd';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
+import { localStorageUtil } from '../utils/localStorageUtil';
+import { useInput } from '../hooks/useInput';
 
 const { Text, Title } = Typography;
 
@@ -11,39 +13,36 @@ type FieldType = {
 };
 
 const SignUp = () => {
+  const userEmail = useInput('');
+  const userPassword = useInput('');
+
   const [user, setUser] = useState({
-    email: '',
-    password: '',
+    email: userEmail.value,
+    password: userPassword.value,
     favorites: [],
     history: [],
   });
+
+  useEffect(() => {
+    setUser({
+      ...user,
+      email: userEmail.value,
+      password: userPassword.value,
+    });
+  }, [userEmail.value, userPassword.value]);
 
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    if (localStorage.getItem(user.email)) {
+    if (localStorageUtil.getUser(user.email)) {
       alert('Пользователь с таким email уже существует');
       form.resetFields();
     } else {
-      localStorage.setItem(user.email, JSON.stringify(user));
+      localStorageUtil.setUser(user.email, user);
       alert('Вы успешно зарегистрированы. Теперь можете войти в аккаунт.');
       navigate('/login');
     }
-  };
-
-  const onChangeEmail = (value: string) => {
-    setUser({
-      ...user,
-      email: value,
-    });
-  };
-
-  const onChangePassword = (value: string) => {
-    setUser({
-      ...user,
-      password: value,
-    });
   };
 
   return (
@@ -68,10 +67,7 @@ const SignUp = () => {
             { type: 'email', message: 'Email is not a valid!' },
           ]}
         >
-          <Input
-            value={user.email}
-            onChange={(e) => onChangeEmail(e.target.value)}
-          />
+          <Input value={userEmail.value} onChange={userEmail.onChange} />
         </Form.Item>
 
         <Form.Item<FieldType>
@@ -87,8 +83,8 @@ const SignUp = () => {
           ]}
         >
           <Input.Password
-            value={user.password}
-            onChange={(e) => onChangePassword(e.target.value)}
+            value={userPassword.value}
+            onChange={userPassword.onChange}
           />
         </Form.Item>
 

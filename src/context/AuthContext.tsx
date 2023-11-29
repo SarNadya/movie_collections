@@ -1,4 +1,5 @@
 import { createContext, useState } from 'react';
+import { localStorageUtil } from '../utils/localStorageUtil';
 
 interface AuthContextType {
   isAuth: boolean;
@@ -17,7 +18,7 @@ export const AuthContext = createContext<AuthContextType>({
 export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
   const [isAuth, setIsAuth] = useState(() => {
     let isAuth;
-    if (localStorage.getItem('auth')) {
+    if (localStorageUtil.getAuth()) {
       isAuth = true;
     } else {
       isAuth = false;
