@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# Movie collections
+### Приложение для поиска фильмов
+Используемое API: https://api.kinopoisk.dev/ 
+#### `❗У api есть ограничение на 1000 запросов в сутки❗`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+DEMO: [movie-collections-liard.vercel.app](https://movie-collections-liard.vercel.app/)
 
-## Available Scripts
+## Что выполнено:
 
-In the project directory, you can run:
+### 1 уровень (обязательный - необходимый минимум)
+- [x] Реализованы __Требования к функциональности.__
+- [x] Для хранения учетных записей пользователей, их Избранного и Истории поиска, используется __LocalStorage.__
 
-### `npm start`
+#### React
+- [x] Используются __функциональные компоненты c хуками в приоритете над классовыми.__
+- [x] Есть разделение на __умные и глупые компоненты__: [SignIn](https://github.com/SarNadya/movie_collections/blob/master/src/components/SignIn.tsx) ,[SearchItem](https://github.com/SarNadya/movie_collections/blob/master/src/components/SearchItem/SearchItem.tsx)
+- [x] Есть __рендеринг списков__: [MovieList](https://github.com/SarNadya/movie_collections/blob/master/src/components/MovieList.tsx)
+- [x] Реализована хотя бы одна __форма__: [SignUp](https://github.com/SarNadya/movie_collections/blob/master/src/components/SignUp.tsx)
+- [x] Есть применение __Контекст API__: [AuthContext](https://github.com/SarNadya/movie_collections/blob/master/src/context/AuthContext.tsx)
+- [x] Есть применение __предохранителя__: [ErrorBoundary](https://github.com/SarNadya/movie_collections/blob/master/src/components/ErrorBoundary/ErrorBoundary.tsx)
+- [x] Есть  __кастомный хук__: [useInput](https://github.com/SarNadya/movie_collections/blob/master/src/hooks/useInput.tsx)
+- [x] Несколько компонентов используют __PropTypes__: [FavoritesItem](https://github.com/SarNadya/movie_collections/blob/master/src/components/FavoritesItem/FavoritesItem.tsx), [HistoryItem](https://github.com/SarNadya/movie_collections/blob/master/src/components/HistoryItem/HistoryItem.tsx), [SearchSuggest](https://github.com/SarNadya/movie_collections/blob/master/src/components/SearchSuggest/SearchSuggest.tsx)
+- [x] Поиск не должен триггерить много запросов к серверу (__debounce__): [Search](https://github.com/SarNadya/movie_collections/blob/master/src/components/Search/Search.tsx)
+- [x] Есть применение __lazy + Suspense__: [AppRouter](https://github.com/SarNadya/movie_collections/blob/master/src/components/AppRouter.tsx), [MainPageAsync](https://github.com/SarNadya/movie_collections/blob/master/src/pages/MainPage/MainPage.async.tsx)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+#### Redux
+- [x] Используется __Modern Redux with Redux Toolkit__: [store](https://github.com/SarNadya/movie_collections/blob/master/src/store/store.ts)
+- [x] Используются __слайсы__: [userSlice](https://github.com/SarNadya/movie_collections/blob/master/src/store/reducers/userSlice.ts)
+- [x] Есть __кастомная мидлвара__: [localStorageMiddleware](https://github.com/SarNadya/movie_collections/blob/master/src/store/middlewares/localStorageMiddleware.ts)
+- [x] Используется __RTK Query__: [MovieService](https://github.com/SarNadya/movie_collections/blob/master/src/services/MovieService.ts)
+- [x] Используется __Transforming Responses__: [transformResponse](https://github.com/SarNadya/movie_collections/blob/master/src/utils/transformResponse.ts)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### 2 уровень (необязательный)
+- [x] Используется __TypeScript__
+- [x] Настроен __CI/CD.__
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Дополнительно:
+- Используется дизайн-система __Ant Design__
