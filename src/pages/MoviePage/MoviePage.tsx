@@ -1,7 +1,7 @@
 import { Typography } from 'antd';
 import { useFetchMovieByIdQuery } from '../../services/MovieService';
 import { useParams } from 'react-router';
-import MovieDetails from '../../components/MovieDetails';
+import MovieDetails from '../../components/MovieDetails/MovieDetails';
 import PageLoader from '../../components/UI/PageLoader/PageLoader';
 
 const { Title } = Typography;

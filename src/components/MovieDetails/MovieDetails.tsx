@@ -1,8 +1,9 @@
 import { FC, useContext } from 'react';
-import { TransformedMovie } from '../types/Movie';
+import { TransformedMovie } from '../../types/Movie';
 import { Card, Divider, Flex, Image, Typography } from 'antd';
-import FavoritesButton from './UI/FavoritesButton';
-import { AuthContext } from '../context/AuthContext';
+import FavoritesButton from '../UI/FavoritesButton';
+import { AuthContext } from '../../context/AuthContext';
+import s from './MovieDetails.module.sass';
 
 const { Title, Text } = Typography;
 
@@ -27,7 +28,7 @@ const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
   } = item;
 
   return (
-    <div style={{ padding: '20px' }}>
+    <div className={s.container}>
       <Flex align="start" wrap="wrap" justify="space-evenly">
         <Image width={280} src={poster?.previewUrl} />
         <Card style={{ width: '60%', minWidth: '270px', textAlign: 'left' }}>
@@ -80,12 +81,14 @@ const MovieDetails: FC<MovieDetailsProps> = ({ item }) => {
         Трейлер:
       </Title>
       {videos?.trailers.length ? (
-        <div>
-          <iframe
-            width="620px"
-            height="415px"
-            src={videos?.trailers[0].url}
-          ></iframe>
+        <div className={s.video_container}>
+          <div>
+            <iframe
+              width="300"
+              height="200"
+              src={videos?.trailers[0].url}
+            ></iframe>
+          </div>
         </div>
       ) : (
         <Title level={4} style={{ color: 'red' }}>

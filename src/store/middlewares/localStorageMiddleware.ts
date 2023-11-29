@@ -10,6 +10,7 @@ export const localStorageMiddleware: Middleware = ({ getState }) => {
 
 export const modifiedStore = () => {
   if (localStorage.getItem('applicationState')) {
+    // невозможно присвоить тип string | null
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const saved: any = localStorage.getItem('applicationState');
     return JSON.parse(saved);

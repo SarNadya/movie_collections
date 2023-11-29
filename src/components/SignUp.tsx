@@ -88,7 +88,7 @@ const SignUp = () => {
           />
         </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item style={{ display: 'flex', justifyContent: 'center' }}>
           <Button type="primary" htmlType="submit">
             Зарегистрироваться
           </Button>
