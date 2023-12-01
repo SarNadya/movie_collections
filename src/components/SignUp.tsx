@@ -1,5 +1,4 @@
 import { Button, Card, Typography, Form, Input } from 'antd';
-import { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { localStorageUtil } from '../utils/localStorageUtil';
@@ -16,30 +15,21 @@ const SignUp = () => {
   const userEmail = useInput('');
   const userPassword = useInput('');
 
-  const [user, setUser] = useState({
-    email: userEmail.value,
-    password: userPassword.value,
-    favorites: [],
-    history: [],
-  });
-
-  useEffect(() => {
-    setUser({
-      ...user,
-      email: userEmail.value,
-      password: userPassword.value,
-    });
-  }, [userEmail.value, userPassword.value]);
-
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
   const handleRegister = () => {
-    if (localStorageUtil.getUser(user.email)) {
+    if (localStorageUtil.getUser(userEmail.value)) {
       alert('Пользователь с таким email уже существует');
       form.resetFields();
     } else {
-      localStorageUtil.setUser(user.email, user);
+      const user = {
+        email: userEmail.value,
+        password: userPassword.value,
+        favorites: [],
+        history: [],
+      };
+      localStorageUtil.setUser(userEmail.value, user);
       alert('Вы успешно зарегистрированы. Теперь можете войти в аккаунт.');
       navigate('/login');
     }

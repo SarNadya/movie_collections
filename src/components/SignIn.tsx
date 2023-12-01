@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { Button, Card, Form, Input, Typography } from 'antd';
 import { NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
@@ -19,30 +19,18 @@ const SignIn = () => {
 
   const { setUser } = useActions();
 
-  const [initialUser, setInitialUser] = useState({
-    email: userEmail.value,
-    password: userPassword.value,
-  });
-
   const { setIsAuth } = useContext(AuthContext);
 
   const [form] = Form.useForm();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    setInitialUser({
-      email: userEmail.value,
-      password: userPassword.value,
-    });
-  }, [userEmail.value, userPassword.value]);
-
   const handleLogin = () => {
-    if (!localStorageUtil.getUser(initialUser.email)) {
+    if (!localStorageUtil.getUser(userEmail.value)) {
       alert('Пользователя с таким email не существует');
       form.resetFields();
     } else {
-      const savedUser = localStorageUtil.getUser(initialUser.email);
-      if (savedUser !== null && savedUser.password == initialUser.password) {
+      const savedUser = localStorageUtil.getUser(userEmail.value);
+      if (savedUser !== null && savedUser.password == userPassword.value) {
         setUser(savedUser);
         setIsAuth(true);
         localStorageUtil.setAuth();
