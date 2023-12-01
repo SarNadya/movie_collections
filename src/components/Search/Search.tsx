@@ -9,7 +9,7 @@ import { useDebounce } from '../../hooks/useDebounce';
 const Search = () => {
   const { search, visible } = useTypedSelector((state) => state.searchReducer);
   const { setSearch, setVisible, addHistory } = useActions();
-  const { debouncedValue, setDebouncedValue } = useDebounce(search.trim(), 300);
+  const { debouncedValue } = useDebounce(search.trim(), 300);
 
   const navigate = useNavigate();
   const isActive = debouncedValue && visible;
@@ -19,18 +19,20 @@ const Search = () => {
   };
 
   const handleClick = () => {
-    addHistory(debouncedValue);
-    setSearch('');
-    setDebouncedValue('');
-    navigate(`/search/${debouncedValue}`);
+    if (debouncedValue !== '') {
+      addHistory(debouncedValue);
+      navigate(`/search/${debouncedValue}`);
+    }
   };
 
   const onBlur = () => {
     setTimeout(() => {
-      setSearch('');
-      setDebouncedValue('');
       setVisible(false);
     }, 200);
+  };
+
+  window.onload = () => {
+    setVisible(false);
   };
 
   return (

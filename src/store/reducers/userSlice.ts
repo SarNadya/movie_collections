@@ -31,7 +31,9 @@ export const userSlice = createSlice({
       state.favorites = state.favorites.filter((el) => el !== payload);
     },
     addHistory(state, { payload }) {
-      state.history.push(payload);
+      if (!state.history.includes(payload)) {
+        state.history.push(payload);
+      }
     },
     removeHistory(state, { payload }) {
       state.history = state.history.filter((el) => el !== payload);

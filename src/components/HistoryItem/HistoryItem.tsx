@@ -9,7 +9,11 @@ interface Props {
 }
 
 const HistoryItem: FC<Props> = ({ value }) => {
-  const { removeHistory } = useActions();
+  const { setSearch, removeHistory } = useActions();
+
+  const handleClick = () => {
+    setSearch(value);
+  };
 
   const deletItem = () => {
     removeHistory(value);
@@ -22,7 +26,11 @@ const HistoryItem: FC<Props> = ({ value }) => {
           display: 'flex',
           justifyContent: 'space-between',
         }}
-        extra={<a href={`/search/${value}`}>{value}</a>}
+        extra={
+          <a href={`/search/${value}`} onClick={handleClick}>
+            {value}
+          </a>
+        }
       >
         <Button
           shape="circle"
