@@ -1,4 +1,4 @@
-import { createContext, useState } from 'react';
+import { createContext, useMemo, useState } from 'react';
 import { localStorageUtil } from '../utils/localStorageUtil';
 
 interface AuthContextType {
@@ -26,9 +26,11 @@ export const AuthContextProvider = ({ children }: AuthContextProviderProps) => {
     return isAuth;
   });
 
+  const memoizedValue = useMemo(() => ({ isAuth, setIsAuth }), [isAuth]);
+
   return (
     <div>
-      <AuthContext.Provider value={{ isAuth, setIsAuth }}>
+      <AuthContext.Provider value={memoizedValue}>
         {children}
       </AuthContext.Provider>
     </div>
