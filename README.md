@@ -1,7 +1,7 @@
 # Movie collections
 ### Приложение для поиска фильмов
 Используемое API: https://api.kinopoisk.dev/ 
-#### `❗У api есть ограничение на 1000 запросов в сутки❗`
+#### `❗У api есть ограничение на 200 запросов в сутки❗`
 
 DEMO: [movie-collections-liard.vercel.app](https://movie-collections-liard.vercel.app/)
 
